@@ -9,7 +9,26 @@ import Link from 'next/link'
 import { Favicon } from "favicon-stealer";
 
 export function ProjectCard({ project, titleAs }: { project: ProjectItemType, titleAs?: keyof JSX.IntrinsicElements }) {
-  const utmLink = `https://${project.link.href}?utm_source=${utm_source}`
+  // Build a safe external link: only prepend utm_source for proper http(s) URLs
+  function buildUtmLink(href: string) {
+    if (!href) return href
+    // leave anchors, mailto, tel, and internal routes untouched
+    if (/^(#|mailto:|tel:|\/)*/i.test(href)) return href
+    // already absolute http(s)
+    if (/^https?:\/\//i.test(href)) {
+      const separator = href.includes('?') ? '&' : '?'
+      return `${href}${separator}utm_source=${encodeURIComponent(utm_source)}`
+    }
+    // looks like a bare domain (example.com) -> assume https
+    if (/^[^/]+\.[^/]+/.test(href)) {
+      const url = `https://${href}`
+      const separator = url.includes('?') ? '&' : '?'
+      return `${url}${separator}utm_source=${encodeURIComponent(utm_source)}`
+    }
+    return href
+  }
+
+  const utmLink = buildUtmLink(project.link.href)
   let Component = titleAs ?? 'h2'
   return (
     <li className='group relative flex flex-col items-start h-full'>
@@ -17,7 +36,11 @@ export function ProjectCard({ project, titleAs }: { project: ProjectItemType, ti
         <div className=''>
           <div className='flex flex-col sm:flex-row justify-center sm:justify-start items-start sm:items-center gap-4'>
             <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full">
-              <Favicon url={project.link.href} />
+              {/^https?:\/\//i.test(project.link.href) || /^[^/]+\.[^/]+/.test(project.link.href) ? (
+                <Favicon url={/^https?:\/\//i.test(project.link.href) ? project.link.href : `https://${project.link.href}`} />
+              ) : (
+                <HashIcon className="w-6 h-6 text-muted-foreground" />
+              )}
             </div>
             <Component className="text-base font-semibold">
               {project.name}
