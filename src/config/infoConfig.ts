@@ -15,7 +15,7 @@ export const githubUsername = 'wwwsea'
 // about page
 export const aboutMeHeadline = '关于我'
 export const aboutParagraphs = [
-  '你好，我是子飞鱼，一名后端开发工程师。我毕业于大连理工大学软件工程专业，GPA 3.66/4.0（专业前5%），目前处于求职状态。',
+  '你好，我是子飞鱼，一名后端开发工程师。我毕业于大连理工大学城市学院软件工程专业，GPA 3.66/4.0（专业前5%），目前处于求职状态。',
   '在技术方面，我熟悉 Java 和 Python 语言，深入理解 JVM 内存结构、GC 算法、双亲委派机制、类加载机制等 Java 底层原理，以及 CPython 内存模型、GIL 机制、垃圾回收底层实现等 Python 核心机制。',
   '在数据库方面，我熟练掌握 MySQL，深刻理解事务 ACID 特性、索引、MVCC、日志等，具有一定的 SQL 优化能力，并手写轮子项目 MYDB。',
   '在高并发和高可用方面，我熟悉 synchronized、线程池、TransmittableThreadLocal 等实现原理，熟悉 RocketMQ 消息队列、ElasticSearch 搜索引擎、Netty 高性能架构等。',

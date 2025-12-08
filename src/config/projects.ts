@@ -25,24 +25,24 @@ export const awards: Array<ActivityItemType> = [
     date: '2024',
     location: '全国',
   },
-  {
+  /*{
     name: '三好学生',
     description: '校级荣誉',
     date: '2024',
-    location: '大连理工大学',
-  },
+    location: '大连理工大学城市学院',
+  },*/
   {
     name: '2024届优秀毕业论文',
     description: '校级荣誉',
     date: '2024',
-    location: '大连理工大学',
+    location: '大连理工大学城市学院',
   },
-  {
+/*  {
     name: '校级一等奖学金',
     description: '专业成绩排名前5%',
     date: '2024',
-    location: '大连理工大学',
-  },
+    location: '大连理工大学城市学院',
+  },*/
   {
     name: '大学英语四级（CET-4）',
     description: '英语能力认证',
@@ -53,7 +53,7 @@ export const awards: Array<ActivityItemType> = [
     name: '广宁杯羽毛球比赛 - 女子双打冠军',
     description: '体育竞赛',
     date: '2024',
-    location: '广宁',
+    location: '大连市',
   },
 ]
 
@@ -117,6 +117,6 @@ export const activities: Array<ActivityItemType> = [
     description:
       '在学校武协社团中担任活动策划人员，在学院第一届才艺大赛中带领团队取得第一名的成绩。组织社团内五十余人的活动，成功让更多武打爱好者加入，具有一定的领导力、沟通协调技巧和组织能力，增强团队间的信任。',
     date: '2020-10',
-    location: '大连理工大学',
+    location: '大连理工大学城市学院',
   },
 ]
