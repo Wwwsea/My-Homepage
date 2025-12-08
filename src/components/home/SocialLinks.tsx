@@ -11,6 +11,19 @@ import qrcodeImage from '@/images/qrcode.jpg'
 
 
 export default function SocialLinks({ className }: { className?: string }) {
+    // Build href safely: only append utm_source to http/https links.
+    function buildHref(href: string) {
+        if (!href) return href
+        // leave anchors, mailto, tel, and other schemes untouched
+        if (/^(#|mailto:|tel:)/i.test(href)) return href
+        // only handle absolute http/https links
+        if (/^https?:\/\//i.test(href)) {
+            const separator = href.includes('?') ? '&' : '?'
+            return `${href}${separator}utm_source=${encodeURIComponent(utm_source)}`
+        }
+        return href
+    }
+
     return (
         <div className={cn("mt-6 flex items-center", className)}>
             {socialLinks.map((link) => (
@@ -18,7 +31,7 @@ export default function SocialLinks({ className }: { className?: string }) {
                 <div key={link.name} className="relative inline-flex items-center">
                     <div className="group">
                         <Link
-                            href={`${link.href}?utm_source=${utm_source}`}
+                            href={buildHref(link.href)}
                             target="_blank"
                             rel="noreferrer"
                             aria-label={link.ariaLabel ?? `Follow on ${link.name}`}
